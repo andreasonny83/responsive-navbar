@@ -1,0 +1,132 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  background: #DADADA;
+  font-family: 'Lato', Arial, sans-serif;
+}
+
+.h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* Header */
+
+.header {
+  width: 100%;
+  height: 56px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  background: #333;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.header__menu-toggle {
+  background: none;
+  border: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  color: #FFF;
+}
+
+/* Content */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Card */
+
+.card {
+  background: #FFF;
+  padding: 10px 16px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card + .card {
+  margin-top: 18px;
+}
+
+/* ResponsiveNav */
+
+.responsive-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.responsive-nav--visible {
+  pointer-events: auto;
+}
+
+.responsive-nav::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1);
+}
+
+.responsive-nav--visible::before {
+  opacity: 1;
+}
+
+.responsive-nav__container {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  background: #FFF;
+  height: 100%;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.4);
+  transform: translateX(-105%);
+  transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.responsive-nav--visible .responsive-nav__container {
+  transform: none;
+}
+
+.responsive-nav__hide {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+}
+
+.responsive-nav__header {
+  height: 200px;
+  background: #330099;
+  color: #FFF;
+  display: flex;
+  padding: 16px;
+  align-items: flex-end;
+  font-size: 24px;
+}
+
+.responsive-nav__content {
+  flex: 1;
+  list-style-type: none;
+}
