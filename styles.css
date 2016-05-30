@@ -101,9 +101,16 @@ html, body {
   height: 100%;
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.4);
   transform: translateX(-105%);
-  transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
   display: flex;
   flex-direction: column;
+}
+
+.responsive-nav--visible.responsive-nav--animatable .responsive-nav__container {
+  transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
+}
+
+.responsive-nav--animatable .responsive-nav__container {
+  transition: transform 0.2s cubic-bezier(0, 0, 0.3, 1);
 }
 
 .responsive-nav--visible .responsive-nav__container {
@@ -114,6 +121,9 @@ html, body {
   position: absolute;
   left: 16px;
   top: 16px;
+  background: none;
+  border: none;
+  color: #FFF;
 }
 
 .responsive-nav__header {
@@ -128,5 +138,20 @@ html, body {
 
 .responsive-nav__content {
   flex: 1;
-  list-style-type: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.responsive-nav__content li {
+  height: 32px;
+  line-height: 32px;
+  padding: 0 16px
+}
+
+.responsive-nav__content li:hover {
+  background: #CCC;
 }
