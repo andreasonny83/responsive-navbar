@@ -1,46 +1,47 @@
 'use strict';
 
 function ResponsiveNav() {
-  this.startX = 0;
-  this.currentX = 0;
   var self = this;
 
-  this.showButtonEl =
+  self.startX = 0;
+  self.currentX = 0;
+
+  self.showButtonEl =
     document.querySelector('.js-menu-show');
 
-  this.hideButtonEl =
+  self.hideButtonEl =
     document.querySelector('.js-menu-hide');
 
-  this.responsiveNavEl =
+  self.responsiveNavEl =
     document.querySelector('.js-responsive-nav');
 
-  this.responsiveNavContainer =
+  self.responsiveNavContainer =
     document.querySelector('.js-responsive-nav-container');
 
-  this.showButtonEl
-    .addEventListener('click', this.showResponsiveNav.bind(this));
+  self.showButtonEl
+    .addEventListener('click', self.showResponsiveNav.bind(self));
 
-  this.hideButtonEl
-    .addEventListener('click', this.hideResponsiveNav.bind(this));
+  self.hideButtonEl
+    .addEventListener('click', self.hideResponsiveNav.bind(self));
 
-  this.responsiveNavEl
-    .addEventListener('click', this.hideResponsiveNav.bind(this));
+  self.responsiveNavEl
+    .addEventListener('click', self.hideResponsiveNav.bind(self));
 
-  this.responsiveNavContainer
-    .addEventListener('click', this.ignoreHide);
+  self.responsiveNavContainer
+    .addEventListener('click', self.ignoreHide);
 
-  this.responsiveNavEl
-    .addEventListener('touchstart', this.onTouchStart.bind(this));
+  document
+    .addEventListener('touchstart', self.onTouchStart.bind(self));
 
-  this.responsiveNavEl
-    .addEventListener('touchmove', this.onTouchMove.bind(this));
+  document
+    .addEventListener('touchmove', self.onTouchMove.bind(self));
 
-  this.responsiveNavEl
-    .addEventListener('touchend', this.onTouchEnd.bind(this));
+  document
+    .addEventListener('touchend', self.onTouchEnd.bind(self));
 
-  this.onTransitionEnd = function() {
-    self.responsiveNavContainer
-      .classList.remove('responsive-nav__container--animatable');
+  self.onTransitionEnd = function() {
+    self.responsiveNavEl
+      .classList.remove('responsive-nav--animatable');
 
     self.responsiveNavContainer
       .removeEventListener('transitionend', self.onTransitionEnd);
@@ -49,10 +50,7 @@ function ResponsiveNav() {
 
 ResponsiveNav.prototype.showResponsiveNav = function() {
   this.responsiveNavEl
-    .classList.add('responsive-nav--visible');
-
-  this.responsiveNavEl
-    .classList.add('responsive-nav--animatable');
+    .classList.add('responsive-nav--visible', 'responsive-nav--animatable');
 
   this.responsiveNavEl
     .addEventListener('transitionend', this.onTransitionEnd);
@@ -74,13 +72,18 @@ ResponsiveNav.prototype.ignoreHide = function(evt) {
 };
 
 ResponsiveNav.prototype.update = function() {
-  console.log(this);
-
   if(!this.touchingSideNav) {
     return;
   }
 
-  var translateX = Math.min(0, this.currentX - this.startX);
+  var translateX;
+
+  if (this.swipeFromLeft) {
+    translateX = 20 + Math.min(-20, this.currentX - this.startX -
+      this.responsiveNavContainer.getBoundingClientRect().width);
+  } else {
+    translateX = Math.min(0, this.currentX - this.startX);
+  }
 
   this.responsiveNavContainer.style.transform =
     'translateX(' + translateX + 'px)';
@@ -89,14 +92,24 @@ ResponsiveNav.prototype.update = function() {
 };
 
 ResponsiveNav.prototype.onTouchStart = function(evt) {
-  if (!this.responsiveNavEl.classList.contains('responsive-nav--visible')) {
+  if (!this.responsiveNavEl.classList.contains('responsive-nav--visible') &&
+      evt.touches[0].pageX > 15) {
     return;
   }
 
   this.startX = evt.touches[0].pageX;
   this.currentX = this.startX;
-
+  this.swipeFromLeft = this.startX < 15 ? true : false;
   this.touchingSideNav = true;
+
+  if (!!this.swipeFromLeft) {
+    this.responsiveNavEl
+      .classList.add('responsive-nav--visible', 'responsive-nav--animatable');
+
+    this.responsiveNavContainer.style.transform =
+      'translateX(-96%)';
+  }
+
   requestAnimationFrame(this.update.bind(this));
 };
 
@@ -107,7 +120,7 @@ ResponsiveNav.prototype.onTouchMove = function(evt) {
 
   this.currentX = evt.touches[0].pageX;
 
-  evt.preventDefault();
+  // evt.preventDefault();
 };
 
 ResponsiveNav.prototype.onTouchEnd = function(evt) {
@@ -116,12 +129,16 @@ ResponsiveNav.prototype.onTouchEnd = function(evt) {
   }
 
   this.touchingSideNav = false;
-
-  var translateX = Math.min(0, this.currentX - this.startX);
+  var translateX = this.currentX - this.startX;
   this.responsiveNavContainer.style = '';
 
-  if (translateX < -60) {
+  if ((!this.swipeFromLeft && translateX < -60) ||
+      (!!this.swipeFromLeft && translateX < 60)) {
     this.hideResponsiveNav();
+  }
+
+  if (!!this.swipeFromLeft && translateX > 60) {
+    this.showResponsiveNav();
   }
 };
 
