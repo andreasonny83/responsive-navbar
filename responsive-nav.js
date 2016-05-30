@@ -73,31 +73,51 @@ ResponsiveNav.prototype.ignoreHide = function(evt) {
   evt.stopPropagation();
 };
 
+ResponsiveNav.prototype.update = function() {
+  console.log(this);
+
+  if(!this.touchingSideNav) {
+    return;
+  }
+
+  var translateX = Math.min(0, this.currentX - this.startX);
+
+  this.responsiveNavContainer.style.transform =
+    'translateX(' + translateX + 'px)';
+
+  requestAnimationFrame(this.update.bind(this));
+};
+
 ResponsiveNav.prototype.onTouchStart = function(evt) {
   if (!this.responsiveNavEl.classList.contains('responsive-nav--visible')) {
-    this.startX = -1;
     return;
   }
 
   this.startX = evt.touches[0].pageX;
   this.currentX = this.startX;
+
+  this.touchingSideNav = true;
+  requestAnimationFrame(this.update.bind(this));
 };
 
 ResponsiveNav.prototype.onTouchMove = function(evt) {
-  if (this.startX < 0) {
+  if (!this.touchingSideNav) {
     return;
   }
 
   this.currentX = evt.touches[0].pageX;
-  var translateX = Math.min(0, this.currentX - this.startX);
 
-  this.responsiveNavContainer.style.transform =
-    'translateX(' + translateX + 'px)';
+  evt.preventDefault();
 };
 
 ResponsiveNav.prototype.onTouchEnd = function(evt) {
-  var translateX = Math.min(0, this.currentX - this.startX);
+  if (!this.touchingSideNav) {
+    return;
+  }
 
+  this.touchingSideNav = false;
+
+  var translateX = Math.min(0, this.currentX - this.startX);
   this.responsiveNavContainer.style = '';
 
   if (translateX < -60) {
