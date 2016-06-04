@@ -149,9 +149,9 @@ html, body {
 }
 
 .responsive-nav__content li {
-  height: 32px;
-  line-height: 32px;
-  padding: 0 16px
+  height: 38px;
+  line-height: 38px;
+  padding: 0 16px;
 }
 
 .responsive-nav__content li:hover {

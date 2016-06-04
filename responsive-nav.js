@@ -92,6 +92,10 @@ ResponsiveNav.prototype.update = function() {
 };
 
 ResponsiveNav.prototype.onTouchStart = function(evt) {
+  if (evt.srcElement.parentElement.className === 'responsive-nav__content') {
+    return;
+  }
+
   if (!this.responsiveNavEl.classList.contains('responsive-nav--visible') &&
       evt.touches[0].pageX > 15) {
     return;
@@ -119,8 +123,6 @@ ResponsiveNav.prototype.onTouchMove = function(evt) {
   }
 
   this.currentX = evt.touches[0].pageX;
-
-  // evt.preventDefault();
 };
 
 ResponsiveNav.prototype.onTouchEnd = function(evt) {
