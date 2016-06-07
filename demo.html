@@ -5,7 +5,7 @@
     <meta name="author" content="andreasonny83" />
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="theme-color" content="#FF00FF">
-    <title>Responsive Nav</title>
+    <title>Responsive Navbar</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato"
@@ -21,11 +21,12 @@
 
     <aside class="js-responsive-nav responsive-nav">
       <nav class="js-responsive-nav-container responsive-nav__container">
-        <button class="js-menu-hide responsive-nav__hide material-icons">
-          close
-        </button>
         <header class="responsive-nav__header">
-          Responsive Nav
+          <h2 class="responsive-nav__header__title">
+            Responsive Navbar
+            <span>Navigation Bar</span>
+          </h2>
+
         </header>
         <ul class="responsive-nav__content">
           <li>One</li>
@@ -114,6 +115,9 @@
       </div>
     </main>
 
-    <script src="./responsive-nav.js"></script>
+    <script src="./responsive-navbar.js"></script>
+    <script type="text/javascript">
+      ResponsiveNav.init();
+    </script>
   </body>
 </html>
