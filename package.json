@@ -1,0 +1,26 @@
+{
+  "name": "responsive-navbar",
+  "version": "0.0.1",
+  "description": "Responsive navigation bar for WebApps",
+  "main": "responsive-navbar.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreasonny83/responsive-navbar.git"
+  },
+  "keywords": [
+    "responsive",
+    "sidenav",
+    "navbar",
+    "material",
+    "design"
+  ],
+  "author": "Andrea Sonny <andreasonny83@gmail.com> (https://github.com/andreasonny83)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andreasonny83/responsive-navbar/issues"
+  },
+  "homepage": "https://github.com/andreasonny83/responsive-navbar#readme"
+}

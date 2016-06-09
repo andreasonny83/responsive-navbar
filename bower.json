@@ -1,6 +1,9 @@
 {
   "name": "responsive-navbar",
-  "main": "responsive-navbar.js",
+  "main": [
+    "responsive-navbar.js",
+    "responsive-navbar.css",
+  ],
   "homepage": "https://github.com/andreasonny83/responsive-navbar",
   "authors": [
     "Andrea Sonny <andreasonny83@gmail.com>"

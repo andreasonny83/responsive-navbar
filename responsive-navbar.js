@@ -7,6 +7,9 @@
     self.startX = 0;
     self.currentX = 0;
 
+    self.body =
+    document.body;
+
     self.showButtonEl =
       document.querySelector('.js-menu-show');
 
@@ -44,6 +47,10 @@
   }
 
   ResponsiveNav.prototype.showResponsiveNav = function() {
+    if (!this.body.hasAttribute('style')) {
+      this.body.setAttribute('style', 'overflow-y:hidden;');
+    }
+
     this.responsiveNavEl
       .classList.add('responsive-nav--visible', 'responsive-nav--animatable');
 
@@ -52,6 +59,10 @@
   };
 
   ResponsiveNav.prototype.hideResponsiveNav = function() {
+    if (this.body.hasAttribute('style')) {
+      this.body.removeAttribute('style');
+    }
+
     this.responsiveNavEl
       .classList.remove('responsive-nav--visible');
 
