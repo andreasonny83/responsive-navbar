@@ -12,8 +12,14 @@
   "keywords": [
     "responsive",
     "vanillajs",
-    "navbar"
+    "navbar",
+    "material-design",
+    "material"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andreasonny83/responsive-navbar.git"
+  },
   "moduleType": [
     "globals"
   ],
