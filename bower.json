@@ -2,7 +2,7 @@
   "name": "responsive-navbar",
   "main": [
     "responsive-navbar.js",
-    "responsive-navbar.css",
+    "responsive-navbar.css"
   ],
   "homepage": "https://github.com/andreasonny83/responsive-navbar",
   "authors": [
