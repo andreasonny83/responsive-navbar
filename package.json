@@ -1,6 +1,6 @@
 {
   "name": "responsive-navbar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Responsive navigation bar for WebApps",
   "main": "responsive-navbar.js",
   "scripts": {
@@ -14,13 +14,18 @@
     "responsive",
     "sidenav",
     "navbar",
-    "material",
-    "design"
+    "material-design",
+    "material"
   ],
   "author": "Andrea Sonny <andreasonny83@gmail.com> (https://github.com/andreasonny83)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/andreasonny83/responsive-navbar/issues"
   },
-  "homepage": "https://github.com/andreasonny83/responsive-navbar#readme"
+  "homepage": "https://github.com/andreasonny83/responsive-navbar#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "browser-sync": "^2.13.0",
+    "gulp": "github:gulpjs/gulp#4.0"
+  }
 }
