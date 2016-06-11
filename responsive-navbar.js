@@ -47,10 +47,6 @@
   }
 
   ResponsiveNav.prototype.showResponsiveNav = function() {
-    if (!this.body.hasAttribute('style')) {
-      this.body.setAttribute('style', 'overflow-y:hidden;');
-    }
-
     this.responsiveNavEl
       .classList.add('responsive-nav--visible', 'responsive-nav--animatable');
 
@@ -98,26 +94,31 @@
   };
 
   ResponsiveNav.prototype.onTouchStart = function(evt) {
-    if (evt.srcElement.parentElement.className === 'responsive-nav__content') {
+    if (evt.srcElement.parentElement &&
+        evt.srcElement.parentElement.className === 'responsive-nav__content') {
       return;
     }
 
     if (!this.responsiveNavEl.classList.contains('responsive-nav--visible') &&
-        evt.touches[0].pageX > 15) {
+        evt.touches[0].pageX > 20) {
       return;
+    }
+
+    if (!this.body.hasAttribute('style')) {
+      this.body.setAttribute('style', 'overflow-y:hidden;');
     }
 
     this.startX = evt.touches[0].pageX;
     this.currentX = this.startX;
-    this.swipeFromLeft = this.startX < 15 ? true : false;
     this.touchingSideNav = true;
+    this.swipeFromLeft = this.startX < 20 &&
+      !this.responsiveNavEl.classList.contains('responsive-nav--visible') ?
+      true : false;
 
-    if (!!this.swipeFromLeft) {
+    if (!!this.swipeFromLeft &&
+        !this.responsiveNavEl.classList.contains('responsive-nav--visible')) {
       this.responsiveNavEl
         .classList.add('responsive-nav--visible', 'responsive-nav--animatable');
-
-      this.responsiveNavContainer.style.transform =
-        'translateX(-96%)';
     }
 
     requestAnimationFrame(this.update.bind(this));

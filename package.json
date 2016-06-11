@@ -1,6 +1,6 @@
 {
   "name": "responsive-navbar",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Responsive navigation bar for WebApps",
   "main": "responsive-navbar.js",
   "scripts": {

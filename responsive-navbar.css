@@ -107,6 +107,7 @@ html, body {
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
+  transition: transform;
 }
 
 .responsive-nav--visible.responsive-nav--animatable .responsive-nav__container {
