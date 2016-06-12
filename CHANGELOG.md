@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.4
+
+> 2016.06.12
+
+*   detect gesture to optimize animation performances
+*   extra top padding on responsive-nav__content
+*   fixed body overflow minor bug
+
 ## 0.0.3
 
 > 2016.06.11

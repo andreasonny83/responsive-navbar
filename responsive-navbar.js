@@ -47,6 +47,10 @@
   }
 
   ResponsiveNav.prototype.showResponsiveNav = function() {
+    if (!this.body.hasAttribute('style')) {
+      this.body.setAttribute('style', 'overflow-y:hidden;');
+    }
+
     this.responsiveNavEl
       .classList.add('responsive-nav--visible', 'responsive-nav--animatable');
 
@@ -74,7 +78,15 @@
   };
 
   ResponsiveNav.prototype.update = function() {
-    if(!this.touchingSideNav) {
+    requestAnimationFrame(this.update.bind(this));
+
+    if(!this.touchingSideNav || this.touchingList) {
+      return;
+    }
+
+    if (!this.moving && !this.swipeFromLeft) {
+      translateX = this.currentX;
+
       return;
     }
 
@@ -90,27 +102,34 @@
     this.responsiveNavContainer.style.transform =
       'translateX(' + translateX + 'px)';
 
-    requestAnimationFrame(this.update.bind(this));
   };
 
   ResponsiveNav.prototype.onTouchStart = function(evt) {
-    if (evt.srcElement.parentElement &&
-        evt.srcElement.parentElement.className === 'responsive-nav__content') {
-      return;
-    }
+    var self = this;
+    self.touchingList = false;
 
     if (!this.responsiveNavEl.classList.contains('responsive-nav--visible') &&
         evt.touches[0].pageX > 20) {
       return;
     }
 
+    evt.path.forEach(function(i) {
+      if (i.classList && i.classList.contains('responsive-nav__container')) {
+        self.touchingList = true;
+      }
+    });
+
     if (!this.body.hasAttribute('style')) {
       this.body.setAttribute('style', 'overflow-y:hidden;');
     }
 
     this.startX = evt.touches[0].pageX;
+    this.startY = evt.touches[0].pageY;
+
     this.currentX = this.startX;
+    this.currentY = this.startY;
     this.touchingSideNav = true;
+
     this.swipeFromLeft = this.startX < 20 &&
       !this.responsiveNavEl.classList.contains('responsive-nav--visible') ?
       true : false;
@@ -130,6 +149,20 @@
     }
 
     this.currentX = evt.touches[0].pageX;
+    this.currentY = evt.touches[0].pageY;
+
+    if ((this.moving === 'x' || !!this.swipeFromLeft) &&
+        this.responsiveNavContainer.style.overflowY !== 'hidden') {
+      this.responsiveNavContainer.style.overflowY = 'hidden';
+    }
+
+    if (!this.moving && Math.abs(this.currentX - this.startX) > 10) {
+      this.moving = 'x';
+      this.touchingList = false;
+    } else if (!!this.touchingList &&
+        !this.moving && Math.abs(this.currentY - this.startY) > 10) {
+      this.moving = 'y';
+    }
   };
 
   ResponsiveNav.prototype.onTouchEnd = function(evt) {
@@ -138,15 +171,19 @@
     }
 
     this.touchingSideNav = false;
-    var translateX = this.currentX - this.startX;
+    this.moving = null;
     this.responsiveNavContainer.style = '';
+
+    if (!!this.touchingList) {
+      return;
+    }
+
+    var translateX = this.currentX - this.startX;
 
     if ((!this.swipeFromLeft && translateX < -60) ||
         (!!this.swipeFromLeft && translateX < 60)) {
       this.hideResponsiveNav();
-    }
-
-    if (!!this.swipeFromLeft && translateX > 60) {
+    } else if (!!this.swipeFromLeft && translateX > 60) {
       this.showResponsiveNav();
     }
   };
@@ -157,7 +194,7 @@
 
   rNav = {
     init: init,
-    version: 'ResponsiveNav v.0.0.1'
+    version: 'ResponsiveNav v.0.0.4'
   };
 
   window.ResponsiveNav = rNav;
