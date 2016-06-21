@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/v/responsive-navbar.svg?maxAge=86400)]()
 [![Bower](https://img.shields.io/bower/v/responsive-navbar.svg?maxAge=86400)]()
 
-Live demo available [here](http://sonnywebdesign.com/responsive-nav/)
+Live demo available [here](https://responsive-navbar.herokuapp.com/)
 
 ## Installation
 
