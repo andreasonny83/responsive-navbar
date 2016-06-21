@@ -1,17 +1,20 @@
 {
-  "name": "responsive-nav-server",
+  "name": "responsive-navbar-server",
   "version": "1.0.0",
-  "description": "server side for responsive-nav",
+  "description": "server side for responsive-navbar",
   "scripts": {
-    "start": "node index.js"
+    "start": "npm install && node index.js"
   },
   "author": "Andrea Sonny <andreasonny83@gmail.com> (https://github.com/andreasonny83)",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/andreasonny83/responsive-navbar.git"
   },
+  "engines": {
+    "node": "4.0.0"
+  },
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "express": "^4.14.0",
     "responsive-navbar": "0.0.4"
   }
