@@ -1,0 +1,16 @@
+{
+  "name": "responsive-nav-server",
+  "version": "1.0.0",
+  "description": "server side for responsive-nav",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Andrea Sonny <andreasonny83@gmail.com> (https://github.com/andreasonny83)",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.14.0",
+    "responsive-navbar": "0.0.4"
+  }
+}
