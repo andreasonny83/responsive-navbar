@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const port = process.argv[2] || 8888;
+var port = process.env.PORT || 5000;
 
 app.use(express.static(__dirname));
 app.use(express.static(__dirname + '/node_modules/responsive-navbar'));
