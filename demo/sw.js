@@ -5,6 +5,10 @@ self.addEventListener('install', function(e) {
     caches.open(version + 'responsive-navbar')
       .then(function(cache) {
         return cache.addAll([
+          './',
+          './index.html',
+          './responsive-navbar.css',
+          './responsive-navbar.js',
           '/',
           '/index.html',
           '/responsive-navbar.css',
