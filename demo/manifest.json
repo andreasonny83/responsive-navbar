@@ -5,36 +5,40 @@
   "display": "standalone",
   "orientation": "portrait",
   "icons": [{
-    "src": "images/touch/homescreen36.png",
+    "src": "images/icons/homescreen36.png",
     "sizes": "36x36",
     "type": "image/png"
   }, {
-    "src": "images/touch/homescreen48.png",
+    "src": "images/icons/homescreen48.png",
     "sizes": "48x48",
     "type": "image/png"
   }, {
-    "src": "images/touch/homescreen72.png",
+    "src": "images/icons/homescreen72.png",
     "sizes": "72x72",
     "type": "image/png"
   }, {
-    "src": "images/touch/homescreen96.png",
+    "src": "images/icons/homescreen96.png",
     "sizes": "96x96",
     "type": "image/png"
   }, {
-    "src": "images/touch/homescreen128.png",
-    "sizes": "128x128",
+    "src": "images/icons/homescreen120.png",
+    "sizes": "120x120",
     "type": "image/png"
   }, {
-    "src": "images/touch/homescreen144.png",
+    "src": "images/icons/homescreen144.png",
     "sizes": "144x144",
     "type": "image/png"
   }, {
-    "src": "images/touch/homescreen152.png",
+    "src": "images/icons/homescreen152.png",
     "sizes": "152x152",
     "type": "image/png"
   }, {
-    "src": "images/touch/homescreen192.png",
+    "src": "images/icons/homescreen192.png",
     "sizes": "192x192",
+    "type": "image/png"
+  }, {
+    "src": "images/icons/homescreen310.png",
+    "sizes": "310x310",
     "type": "image/png"
   }],
   "background_color": "#3E4EB8",

@@ -1,4 +1,3 @@
-// importScripts('serviceworker-cache-polyfill.js');
 var version = 'v1::';
 
 self.addEventListener('install', function(e) {
@@ -25,7 +24,7 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event) {
   if (event.request.method === 'GET') {
-    console.log(event.request.url);
+    // console.log(event.request.url);
 
     event.respondWith(
       caches.match(event.request)
