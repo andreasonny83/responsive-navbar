@@ -6,6 +6,10 @@ self.addEventListener('install', function(e) {
       .then(function(cache) {
         return cache.addAll([
           '/',
+          './',
+          './index.html',
+          './responsive-navbar.css',
+          './responsive-navbar.js',
           '/index.html',
           '/responsive-navbar.css',
           '/responsive-navbar.js',
